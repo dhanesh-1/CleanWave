@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
-
+import logo from '../../assets/CleanWave_logo.jpeg'
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white">
@@ -9,13 +9,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
             <Link to="/" className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-teal-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">L</span>
-              </div>
-              <span className="text-xl font-bold">LaundryPro</span>
+              <img className='h-15 w-15 rounded-full'src={logo} alt=''></img>
+              <span className="text-xl font-bold">CleanWave</span>
             </Link>
             <p className="text-gray-400">
-              Professional laundry services at your doorstep. Quality cleaning, convenient scheduling, and reliable delivery.
+              Professional Laundry Services At Your Doorstep. Quality Cleaning, Convenient Scheduling, And Reliable Delivery.
             </p>
           </div>
 
@@ -75,11 +73,11 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-2">
                 <Mail size={16} className="text-blue-400" />
-                <span className="text-gray-400">support@laundrypro.com</span>
+                <span className="text-gray-400">support@cleanwave.com</span>
               </div>
               <div className="flex items-center space-x-2">
                 <MapPin size={16} className="text-blue-400" />
-                <span className="text-gray-400">123 Main St, City, State</span>
+                <span className="text-gray-400">123 Main Street, Pune, Maharashtra</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Clock size={16} className="text-blue-400" />
@@ -90,7 +88,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; 2024 LaundryPro. All rights reserved.</p>
+          <p>&copy; 2024 CleanWave. All rights reserved.</p>
         </div>
       </div>
     </footer>
