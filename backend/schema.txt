@@ -1,0 +1,67 @@
+user : {
+    username : string
+    fullName : string
+    email : string
+    phone : string
+    role : string [customer, service, admin]
+    password : string
+    photo : string
+    address : {
+        street : string
+        city : string
+        state : string
+        pincode : string
+    }
+    created_at : date_time
+    updated_at : date_time
+}
+
+
+serviceProvider : {
+    name : string
+    owner : ObjectId-user
+    email : string
+    phone : string
+    desc : string
+    address : {
+        street : string
+        city : string
+        state : string
+        pincode : string
+    }
+    created_at : date_time
+    updated_at : date_time
+}
+
+service : {
+    provider : ObjectId-serviceProvider
+    name : string
+    desc : string
+    price : number
+    unit : string
+    created_at : date_time
+    updated_at : date_time
+}
+
+order : {
+    user : ObjectId-user
+    services : [
+        {
+            service : ObjectId-service
+            quantity : number
+        }
+    ]
+    total : number
+    status : string [pending, completed, cancelled]
+    created_at : date_time
+    updated_at : date_time
+}
+
+review : {
+    user : ObjectId-user
+    order : ObjectId-order
+    rating : number(1, 5)
+    remark : string
+    created_at : date_time
+    updated_at : date_time
+}
