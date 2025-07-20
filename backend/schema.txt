@@ -69,3 +69,65 @@ review : {
     created_at : date_time
     updated_at : date_time
 }
+
+
+####
+Auth Routes
+
+POST   /auth/register           → Register a new user
+POST   /auth/login              → Login a user
+POST   /auth/logout             → Logout current user (optional if using sessions/tokens)
+
+####
+User Routes
+
+GET    /users/                  → Get all users (admin only)
+GET    /users/:id               → Get a single user
+POST   /users/                  → Create a user (mostly for admin creation, use `/auth/register` for self-registration)
+PUT    /users/:id               → Update user info
+DELETE /users/:id               → Delete user
+
+GET    /users/:id/orders        → Get orders placed by the user
+GET    /users/:id/reviews       → Get reviews by the user
+
+####
+Service Provider Routes
+
+GET    /providers/              → Get all service providers
+GET    /providers/:id           → Get a single provider
+POST   /providers/              → Create a provider (authenticated user only)
+PUT    /providers/:id           → Update provider (owner only)
+DELETE /providers/:id           → Delete provider (owner or admin only)
+
+GET    /providers/:id/services  → Get all services from a provider
+
+####
+Service Routes
+
+GET    /services/               → Get all services
+GET    /services/:id            → Get single service
+POST   /services/               → Create a new service (provider only)
+PUT    /services/:id            → Update service (provider only)
+DELETE /services/:id            → Delete service (provider only)
+
+GET    /services/:id/reviews    → Get reviews for a specific service
+
+####
+Order Routes
+
+GET    /orders/                 → Get all orders (admin only)
+GET    /orders/:id              → Get single order
+POST   /orders/                 → Create a new order (customer only)
+PUT    /orders/:id              → Update order status (admin or provider)
+DELETE /orders/:id             → Cancel/delete order (customer or admin)
+
+GET    /orders/:id/review       → Get review for an order (if any)
+
+####
+Review Routes
+
+GET    /reviews/                → Get all reviews
+GET    /reviews/:id             → Get single review
+POST   /reviews/                → Create a new review (customer only, after order completion)
+PUT    /reviews/:id             → Update review (author only)
+DELETE /reviews/:id             → Delete review (author or admin)
