@@ -23,6 +23,8 @@ serviceProvider : {
     email : string
     phone : string
     desc : string
+    image : string
+    avgRating : number
     address : {
         street : string
         city : string
@@ -37,6 +39,7 @@ service : {
     provider : ObjectId-serviceProvider
     name : string
     desc : string
+    image : string
     price : number
     unit : string
     created_at : date_time
@@ -60,6 +63,7 @@ order : {
 review : {
     user : ObjectId-user
     order : ObjectId-order
+    service : ObjectId-service
     rating : number(1, 5)
     remark : string
     created_at : date_time
