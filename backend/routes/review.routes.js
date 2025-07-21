@@ -7,12 +7,13 @@ import {deleteReview} from '../controllers/review.controller.js'
 
 const router = express.Router();
 
+import protect from "../middlewares/auth.middlewares.js"
+import authorizeRoles  from "../middlewares/role.middlewares.js";
 
-
-router.get('/', getAllReviews);
-router.get('/:id', getReviewById);
-router.post('/', createReview);
-router.put('/:id', updateReview);
-router.delete('/:id', deleteReview);
+router.get('/', protect, getAllReviews);
+router.get('/:id', protect, getReviewById);
+router.post('/', protect, createReview);
+router.put('/:id', protect,updateReview);
+router.delete('/:id', protect,deleteReview);
 
 export default  router;
