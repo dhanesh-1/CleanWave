@@ -2,7 +2,10 @@ import express from "express"
 import cors from "cors"
 import authRoutes from "./routes/auth.routes.js"
 import userRoutes from "./routes/user.routes.js"
-// import routes from "./routes/index.routes"
+import providerRoutes from "./routes/provider.routes.js"
+import orderRoutes from "./routes/order.routes.js"
+import serviceRoutes from "./routes/service.routes.js"
+import reviewRoutes from "./routes/review.routes.js"
 
 const app = express()
 
@@ -14,6 +17,10 @@ app.use(express.json())
 
 app.use('/auth', authRoutes);
 app.use('/user',userRoutes);
+app.use('/providers',providerRoutes)
+app.use('/order',orderRoutes)
+app.use('/service',serviceRoutes)
+app.use('/review',reviewRoutes)
 
 app.get('/', (req, res)=>{
     res.send("Hello world!!!");
