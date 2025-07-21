@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import User  from "./user.models";
 
 const serviceProviderSchema = new mongoose.Schema({
     name: { type: String, required: true },
@@ -10,11 +9,11 @@ const serviceProviderSchema = new mongoose.Schema({
     image: { type: String },
     avgRating: { type: Number, default: 0 },
     address: {
-        street: { type: String },
-        city: { type: String },
-        state: { type: String },
-        pincode: { type: String }
+        street: String,
+        city: String,
+        state: String,
+        pincode: String
     }
-}, { timestamps: true }); 
+}, { timestamps: true });
 
-export const ProviderSchema = mongoose.model("ProviderSchema",serviceProviderSchema);
+export const Provider = mongoose.model("Provider", serviceProviderSchema);

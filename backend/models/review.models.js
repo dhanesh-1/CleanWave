@@ -1,7 +1,4 @@
 import mongoose from "mongoose";
-import { User } from "./user.models.js";
-import { Order } from "./order.models.js";
-import { Service } from "./service.models.js";
 
 const reviewSchema = new mongoose.Schema({
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
@@ -11,4 +8,4 @@ const reviewSchema = new mongoose.Schema({
     remark: { type: String }
 }, { timestamps: true });
 
-export const Review = mongoose.model('Review', reviewSchema)
+export const Review = mongoose.model('Review', reviewSchema);

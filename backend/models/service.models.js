@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const serviceSchema = new mongoose.Schema({
-    provider: { type: mongoose.Schema.Types.ObjectId, ref: 'ServiceProvider', required: true },
+    provider: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     name: { type: String, required: true },
     desc: { type: String },
     image: { type: String },
@@ -9,4 +9,4 @@ const serviceSchema = new mongoose.Schema({
     unit: { type: String, required: true }
 }, { timestamps: true });
 
-export const Service = mongoose.model("Service",serviceSchema)
+export const Service = mongoose.model("Service", serviceSchema);
