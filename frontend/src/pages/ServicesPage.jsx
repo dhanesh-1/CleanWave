@@ -167,13 +167,13 @@ const ServicesPage = ({ onViewServiceDetails }) => {
           >
             {filteredServices.map((service) => {
               const provider = serviceProviders.find((p) => p._id === service.provider);
+              console.log(provider)
               if (!provider) return null;
 
               return (
                 <ServiceCard
                   key={service._id}
-                  service={service}
-                  provider={provider}
+                  serviceId={service._id}
                   onViewDetails={() => onViewServiceDetails(service._id)}
                 />
               );

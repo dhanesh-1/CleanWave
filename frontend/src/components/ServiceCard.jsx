@@ -1,9 +1,14 @@
 import React from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Star, MapPin, Plus, Eye } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
+import { services, serviceProviders } from '../data/mockData';
 
-const ServiceCard = ({ service, provider, onViewDetails }) => {
+const ServiceCard = ({ serviceId, onViewDetails }) => {
+  const navigate = useNavigate();
   const { addToCart } = useCart();
+  const service = services.find((item)=>item._id == serviceId);
+  const provider = serviceProviders.find((p) => p._id === service.provider);
 
   const handleAddToCart = () => {
     addToCart(service, provider);
@@ -47,7 +52,7 @@ const ServiceCard = ({ service, provider, onViewDetails }) => {
         
         <div className="flex space-x-2">
           <button
-            onClick={onViewDetails}
+            onClick={()=>navigate(`/services/${serviceId}`)}
             className="flex-1 flex items-center justify-center px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors"
           >
             <Eye className="w-4 h-4 mr-2" />

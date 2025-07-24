@@ -158,7 +158,7 @@ const ProvidersPage = ({ onViewProviderDetails }) => {
             {filteredProviders.map((provider) => (
               <ProviderCard
                 key={provider._id}
-                provider={provider}
+                providerId={provider._id}
                 onViewDetails={() => onViewProviderDetails(provider._id)}
               />
             ))}

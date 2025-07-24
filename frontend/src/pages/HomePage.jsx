@@ -1,10 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Search, Users, Shield, Clock, ArrowRight } from 'lucide-react';
 import ServiceCard from '../components/ServiceCard';
 import ProviderCard from '../components/ProviderCard';
 import { services, serviceProviders } from '../data/mockData';
 
 const HomePage = ({ onViewServiceDetails, onViewProviderDetails }) => {
+  const navigate = useNavigate();
   const featuredServices = services.slice(0, 3);
   const featuredProviders = serviceProviders.slice(0, 3);
 
@@ -45,7 +47,7 @@ const HomePage = ({ onViewServiceDetails, onViewProviderDetails }) => {
                 <input
                   type="text"
                   placeholder="Search services..."
-                  className="w-full pl-12 pr-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-4 focus:ring-blue-300"
+                  className="w-full pl-12 pr-4 py-3 bg-blue-500 rounded-lg focus:outline-none focus:ring-2"
                 />
               </div>
               <button className="px-8 py-3 bg-white text-blue-600 rounded-lg hover:bg-gray-100 transition-colors font-semibold">
@@ -96,30 +98,28 @@ const HomePage = ({ onViewServiceDetails, onViewProviderDetails }) => {
                 Book these trending services from our top-rated providers.
               </p>
             </div>
-            <button className="hidden md:flex items-center text-blue-600 hover:text-blue-700 font-medium">
+            <button onClick={()=>navigate('/services')} className="hidden md:flex items-center text-blue-600 hover:text-blue-700 font-medium">
               View All Services
               <ArrowRight className="w-4 h-4 ml-2" />
             </button>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredServices.map((service) => {
-              const provider = serviceProviders.find((p) => p._id === service.provider);
               return (
                 <ServiceCard
                   key={service._id}
-                  service={service}
-                  provider={provider}
+                  serviceId={service._id}
                   onViewDetails={() => onViewServiceDetails(service._id)}
                 />
               );
             })}
           </div>
-          <div className="text-center mt-8 md:hidden">
+          {/* <div className="text-center mt-8 md:hidden">
             <button className="flex items-center mx-auto text-blue-600 hover:text-blue-700 font-medium">
               View All Services
               <ArrowRight className="w-4 h-4 ml-2" />
             </button>
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -135,7 +135,7 @@ const HomePage = ({ onViewServiceDetails, onViewProviderDetails }) => {
                 Meet our highly-rated service providers trusted by thousands.
               </p>
             </div>
-            <button className="hidden md:flex items-center text-blue-600 hover:text-blue-700 font-medium">
+            <button onClick={()=>navigate('/providers')} className="hidden md:flex items-center text-blue-600 hover:text-blue-700 font-medium">
               View All Providers
               <ArrowRight className="w-4 h-4 ml-2" />
             </button>
@@ -144,17 +144,17 @@ const HomePage = ({ onViewServiceDetails, onViewProviderDetails }) => {
             {featuredProviders.map((provider) => (
               <ProviderCard
                 key={provider._id}
-                provider={provider}
+                providerId={provider._id}
                 onViewDetails={() => onViewProviderDetails(provider._id)}
               />
             ))}
           </div>
-          <div className="text-center mt-8 md:hidden">
-            <button className="flex items-center mx-auto text-blue-600 hover:text-blue-700 font-medium">
+          {/* <div className="text-center mt-8 md:hidden">
+            <button onClick={()=>navigate('/providers')} className="flex items-center mx-auto text-blue-600 hover:text-blue-700 font-medium">
               View All Providers
               <ArrowRight className="w-4 h-4 ml-2" />
             </button>
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -168,7 +168,7 @@ const HomePage = ({ onViewServiceDetails, onViewProviderDetails }) => {
             Join thousands of satisfied customers who trust ServiceHub for their service needs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-3 bg-white text-blue-600 rounded-lg hover:bg-gray-100 transition-colors font-semibold">
+            <button onClick={()=>navigate('/services')} className="px-8 py-3 bg-white text-blue-600 rounded-lg hover:bg-gray-100 transition-colors font-semibold">
               Book a Service
             </button>
             <button className="px-8 py-3 border-2 border-white text-white rounded-lg hover:bg-white hover:text-blue-600 transition-colors font-semibold">

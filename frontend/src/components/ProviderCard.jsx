@@ -1,7 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Star, MapPin, Phone, Mail, Eye } from 'lucide-react';
+import { serviceProviders } from '../data/mockData';
 
-const ProviderCard = ({ provider, onViewDetails }) => {
+const ProviderCard = ({ providerId }) => {
+  const navigate = useNavigate();
+  const provider = serviceProviders.find((p)=>p._id === providerId)
   return (
     <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
       <div className="relative">
@@ -38,7 +42,7 @@ const ProviderCard = ({ provider, onViewDetails }) => {
         </div>
         
         <button
-          onClick={onViewDetails}
+          onClick={()=>navigate(`/providers/${provider._id}`)}
           className="w-full flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
         >
           <Eye className="w-4 h-4 mr-2" />

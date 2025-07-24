@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import {
   ArrowLeft,
   Star,
@@ -13,7 +14,10 @@ import {
 import { services, serviceProviders } from '../data/mockData';
 import { useCart } from '../contexts/CartContext';
 
-const ServiceDetailPage = ({ serviceId, onBack }) => {
+const ServiceDetailPage = ({ onBack }) => {
+  const navigate = useNavigate();
+
+  const { serviceId } = useParams();
   const { addToCart } = useCart();
 
   const service = services.find(s => s._id === serviceId);
@@ -25,7 +29,7 @@ const ServiceDetailPage = ({ serviceId, onBack }) => {
         <div className="text-center">
           <p className="text-gray-500 text-lg">Service not found</p>
           <button
-            onClick={onBack}
+            onClick={()=>navigate(-1)}
             className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
           >
             Go Back
@@ -62,11 +66,11 @@ const ServiceDetailPage = ({ serviceId, onBack }) => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Back Button */}
         <button
-          onClick={onBack}
+          onClick={()=>navigate(-1)}
           className="flex items-center text-gray-600 hover:text-gray-900 mb-6 transition-colors"
         >
           <ArrowLeft className="w-5 h-5 mr-2" />
-          Back to Services
+          Back
         </button>
 
         <div className="bg-white rounded-xl shadow-lg overflow-hidden">

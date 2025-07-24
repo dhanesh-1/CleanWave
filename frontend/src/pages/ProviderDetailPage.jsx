@@ -1,9 +1,12 @@
 import React from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Star, MapPin, Phone, Mail, Users, Calendar } from 'lucide-react';
 import { serviceProviders, services } from '../data/mockData';
 import ServiceCard from '../components/ServiceCard';
 
-const ProviderDetailPage = ({ providerId, onBack, onViewServiceDetails }) => {
+const ProviderDetailPage = ({ onBack, onViewServiceDetails }) => {
+  const navigate = useNavigate();
+  const { providerId } = useParams()
   const provider = serviceProviders.find(p => p._id === providerId);
   const providerServices = services.filter(s => s.provider === providerId);
 
@@ -13,7 +16,7 @@ const ProviderDetailPage = ({ providerId, onBack, onViewServiceDetails }) => {
         <div className="text-center">
           <p className="text-gray-500 text-lg">Provider not found</p>
           <button
-            onClick={onBack}
+            onClick={()=>navigate(-1)}
             className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
           >
             Go Back
@@ -34,11 +37,11 @@ const ProviderDetailPage = ({ providerId, onBack, onViewServiceDetails }) => {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Back Button */}
         <button
-          onClick={onBack}
+          onClick={()=>navigate(-1)}
           className="flex items-center text-gray-600 hover:text-gray-900 mb-6 transition-colors"
         >
           <ArrowLeft className="w-5 h-5 mr-2" />
-          Back to Providers
+          Back
         </button>
 
         <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-8">
@@ -130,8 +133,7 @@ const ProviderDetailPage = ({ providerId, onBack, onViewServiceDetails }) => {
               {providerServices.map((service) => (
                 <ServiceCard
                   key={service._id}
-                  service={service}
-                  provider={provider}
+                  serviceId={service._id}
                   onViewDetails={() => onViewServiceDetails(service._id)}
                 />
               ))}
